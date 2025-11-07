@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Use FrameLayout as the root layout.
+    For a scenario with only a single, full-screen child component, FrameLayout is the most lightweight and efficient choice
+    because it doesn't perform complex position calculations like RelativeLayout or ConstraintLayout.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--
+        The camera preview component from the OpenCV library.
+        - android:id is the most crucial part, as the Java code will use this ID to find and control the view.
+        - layout_width and layout_height are set to "match_parent" to make it fill the entire FrameLayout, achieving a full-screen effect.
+    -->
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>

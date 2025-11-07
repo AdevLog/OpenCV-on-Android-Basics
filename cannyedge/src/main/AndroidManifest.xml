@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Declare that the app requires camera permission. -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!--
+        Declare that the app uses camera hardware features.
+        - android:required="false" allows the app to be installed on devices without a camera.
+        - android:required="true" would make the app available only to devices that have a camera.
+          For emulators, this can help in ensuring a virtual camera is allocated.
+    -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyOpenCVApplication">
+
+        <!--
+            Declare MainActivity as the main entry point of the app.
+            - android:screenOrientation="fullSensor" allows the screen to rotate based on the device's orientation sensor. (effective on Android 15 and below; ignored on Android 16+)
+            - android:exported="true" is required for apps targeting Android 12 (API 31) and higher for activities with intent-filters.
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="fullSensor"
+            android:exported="true">
+            <intent-filter>
+                <!-- These two lines designate this Activity as the one that launches when the user clicks the app icon. -->
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
