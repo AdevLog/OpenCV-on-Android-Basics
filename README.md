@@ -1,12 +1,13 @@
-# Applying OpenCV for Real-Time Edge Detection on Android [**English**](README.md) | [**繁體中文**](README_zh-TW.md)
-This project shows how to use the camera on Android for real-time edge detection with the OpenCV 4.12 SDK. It features a clean and simple design, making it a great starting point for learning OpenCV integration on Android.
+# Real-Time Edge Detection on Android Using OpenCV [**English**](README.md) | [**繁體中文**](README_zh-TW.md)
+
+This project demonstrates real-time edge detection on Android using the camera and OpenCV 4.12 SDK. The app has a clean, minimal design, making it an ideal starting point for learning how to integrate OpenCV into Android applications.
 
 ## Features
-*   Real-time Edge Detection: Live camera frames are processed using the Canny algorithm.
-*   Full-Screen Display: Simple and clean layout showing only the camera view.
-*   Auto-Rotation: The screen automatically rotates based on device orientation (fullSensor).
-*   Modular Image Processing: Image algorithms are organized for easy extension.
-*   Ultra-Simple Design: Code and structure are kept as minimal and clean as possible.
+* Real-time Edge Detection: Processes live camera frames using the Canny algorithm.
+* Full-Screen Display: Displays only the camera view in a minimal layout.
+* Auto-Rotation: Automatically rotates the screen based on device orientation (fullSensor).
+* Modular Image Processing: Organizes image algorithms for easy extension.
+* Ultra-Simple Design: Maintains a minimal and clear project structure and code.
 
 ## App Screenshots
 <table>
@@ -24,16 +25,19 @@ This project shows how to use the camera on Android for real-time edge detection
 
 ## Core Design
 *   OpenCV for Android: Open-source library for image processing.
-*   MainActivity.java Structure: Inherits from `AppCompatActivity`, follows the Android Activity lifecycle, and separates image processing into clean, reusable methods. For inheriting from `CameraActivity`, please refer to [MainExtendsCam.java](/assets/MainExtendsCam.java).
-*   Minimum Android Version: Android 7.0 (Nougat).
+*   MainActivity.java Structure:
+   * [cannyedge-camerax](/cannyedge-camerax) — Uses the CameraX lifecycle to manage the camera and processes images with ImageAnalysis.
+   * [cannyedge](/cannyedge) — Extends `AppCompatActivity` and follows the Android Activity lifecycle. For extending `CameraActivity`, refer to [MainExtendsCam.java](/assets/MainExtendsCam.java).
+   * Image algorithms are organized in a modular way.
+*   Minimum Android Version: Android 7.0 (API level 24).
 
 ## Getting Started
-You can follow the steps below to clone and run this project on your own system.
+Follow the steps below to clone and run this project on your own system.
 
 ### Development Environment
 *   Android Studio Narwhal 3
-*   OpenJDK 17 — [OpenCV Prerequisite](https://github.com/opencv/opencv/wiki/Custom-OpenCV-Android-SDK-and-AAR-package-build).
-*   opencv-4.12.0-android-sdk — [Download File](https://github.com/opencv/opencv/releases).
+*   OpenJDK 17 — [OpenCV Prerequisite](https://github.com/opencv/opencv/wiki/Custom-OpenCV-Android-SDK-and-AAR-package-build)
+*   opencv-4.12.0-android-sdk — [Download File](https://github.com/opencv/opencv/releases)
 
 ### Project Structure
 ```lua
@@ -59,13 +63,28 @@ YourProject/
 4. Follow the [OpenCV official tutorial](https://docs.opencv.org/4.x/d5/df8/tutorial_dev_with_OCV_on_Android.html) to add the OpenCV module to this project as a Module dependency.
    * Click File -> Project structure... -> Dependencies -> All modules -> + (Add Dependency button) -> Module dependency
 5. Ensure that [`build.gradle`](/cannyedge/build.gradle) properly sets the OpenCV SDK as a module dependency:
-    ```
+    ```groovy
     dependencies {
         implementation project(':opencv-sdk')
     }
     ```
-6. Follow the [OpenCV sample script](https://github.com/opencv/opencv/blob/4.x/samples/android/build.gradle.in), and make sure the [`build.gradle`](/cannyedge/build.gradle) includes the following configuration:
+
+    <details>
+    <summary>CameraX project only: add dependencies (Click to expand)</summary>
+
+    ```groovy
+    dependencies {
+        def camerax_version = "1.3.1"
+        implementation "androidx.camera:camera-core:${camerax_version}"
+        implementation "androidx.camera:camera-camera2:${camerax_version}"
+        implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+        implementation "androidx.camera:camera-view:${camerax_version}"
+    }
     ```
+    </details>
+
+6. Follow the [OpenCV sample script](https://github.com/opencv/opencv/blob/4.x/samples/android/build.gradle.in), and make sure the [`build.gradle`](/cannyedge/build.gradle) includes the following configuration:
+    ```groovy
     buildTypes {
         debug {
             packagingOptions {
@@ -90,7 +109,7 @@ Camera permission not granted | Request permission using requestPermissions()
 setCameraPermissionGranted() not called | Add it before enableView()
 
 ## Acknowledgements
-This project was developed by [AdevLog](https://github.com/AdevLog). Documentation and code suggestions were provided by ChatGPT and Google Gemini.
+This project was developed by [AdevLog](https://github.com/AdevLog). Documentation and code suggestions were provided by ChatGPT, Google Gemini, and Claude.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.

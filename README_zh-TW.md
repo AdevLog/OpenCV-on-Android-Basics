@@ -1,5 +1,5 @@
 # 應用 OpenCV 於 Android 即時邊緣偵測 [**English**](README.md) | [**繁體中文**](README_zh-TW.md)
-本專案示範如何在 Android 上使用相機進行即時邊緣偵測，使用 OpenCV 4.12 SDK 進行影像處理。整體設計簡潔、結構清楚，適合作為學習 OpenCV 在 Android 上應用的入門範例。
+本專案示範如何在 Android 上使用相機進行即時邊緣偵測，使用 OpenCV 4.12 SDK 進行影像處理。整體設計簡潔、結構清楚，適合作為學習 OpenCV 在 Android 平台應用的入門範例。
 
 ## 功能特色
 *   即時邊緣偵測：應用 Canny 邊緣偵測演算法於即時的相機畫面。
@@ -24,8 +24,11 @@
 
 ## 設計核心
 *   OpenCV for Android：用於影像處理的開源函式庫。
-*   MainActivity.java 結構：繼承自`AppCompatActivity`，遵照 Android Activity 生命週期設計，影像處理演算法模組化管理。若要繼承`CameraActivity`請參考 [MainExtendsCam.java](/assets/MainExtendsCam.java)。
-*   Android 最低支援版本：Android 7.0 (Nougat)。
+*   MainActivity.java 結構：
+   * [cannyedge-camerax](/cannyedge-camerax) — 使用 CameraX 架構管理相機生命週期並使用 ImageAnalysis 處理影像 。
+   * [cannyedge](/cannyedge) — 繼承自 `AppCompatActivity`,，遵照 Android Activity 生命週期設計。若要繼承 `CameraActivity`, 請參考 [MainExtendsCam.java](/assets/MainExtendsCam.java)。
+   * 影像處理演算法模組化管理。
+*   Android 最低支援版本：Android 7.0 (API 級別 24)。
 
 ## 開始使用
 您可以按照以下步驟，在您自己的電腦上複製並執行此專案。
@@ -47,24 +50,38 @@ YourProject/
 ### 匯入與建置
 *下載此專案*
 1. 在 Android Studio 中以模組方式匯入本專案。
-    * Click File -> New -> Import module... and select cannyedge path
+   * Click File -> New -> Import module... and select cannyedge path
 2. 參考 [OpenCV 官方教學](https://docs.opencv.org/4.x/d5/df8/tutorial_dev_with_OCV_on_Android.html) 建立及匯入 OpenCV 模組。
-    * Click File -> New -> Import module... and select OpenCV SDK path
+   * Click File -> New -> Import module... and select OpenCV SDK path
 3. 確保 `settings.gradle` 已正確包含以下模組：
     ```java
     include ':opencv-sdk'
     include ':cannyedge'
     ```    
 4. 參考 [OpenCV 官方教學](https://docs.opencv.org/4.x/d5/df8/tutorial_dev_with_OCV_on_Android.html) 將 OpenCV 模組與本專案建立依附關係 (Module dependency)。
-    * Click File -> Project structure... -> Dependencies -> All modules -> + (Add Dependency button) -> Module dependency
+   * Click File -> Project structure... -> Dependencies -> All modules -> + (Add Dependency button) -> Module dependency
 5. 確保 [`build.gradle`](/cannyedge/build.gradle) 已正確設定 OpenCV SDK 依附元件：
-    ```java
+    ```groovy
     dependencies {
         implementation project(':opencv-sdk')
     }
     ```
-6. 參考 [OpenCV 官方腳本](https://github.com/opencv/opencv/blob/4.x/samples/android/build.gradle.in)，確保 [`build.gradle`](/cannyedge/build.gradle) 包含以下設定：
+    <details>
+    <summary>CameraX 專案依附元件設定 (點擊展開)</summary>
+
+    ```groovy
+    dependencies {
+        def camerax_version = "1.3.1"
+        implementation "androidx.camera:camera-core:${camerax_version}"
+        implementation "androidx.camera:camera-camera2:${camerax_version}"
+        implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+        implementation "androidx.camera:camera-view:${camerax_version}"
+    }
     ```
+    </details>
+
+6. 參考 [OpenCV 官方腳本](https://github.com/opencv/opencv/blob/4.x/samples/android/build.gradle.in)，確保 [`build.gradle`](/cannyedge/build.gradle) 包含以下設定：
+    ```groovy
     buildTypes {
         debug {
             packagingOptions {
@@ -88,7 +105,7 @@ YourProject/
 | 沒有呼叫 setCameraPermissionGranted()     | 在 enableView() 前加上它     |
 
 ## 致謝
-本專案由 [AdevLog](https://github.com/AdevLog) 開發，文件撰寫與程式碼建議由 ChatGPT 與 Google Gemini 提供協助。
+本專案由 [AdevLog](https://github.com/AdevLog) 開發，文件撰寫與程式碼建議由 ChatGPT 、 Google Gemini 與 Claude 提供協助。
 
 ## 授權條款
 此專案採用 MIT 授權條款。詳情請參閱 LICENSE 檔案。
