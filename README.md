@@ -1,5 +1,4 @@
 # Real-Time Edge Detection on Android Using OpenCV [**English**](README.md) | [**繁體中文**](README_zh-TW.md)
-
 This project demonstrates real-time edge detection on Android using the camera and OpenCV 4.12 SDK. The app has a clean, minimal design, making it an ideal starting point for learning how to integrate OpenCV into Android applications.
 
 ## Features
@@ -24,20 +23,20 @@ This project demonstrates real-time edge detection on Android using the camera a
 </table>
 
 ## Core Design
-*   OpenCV for Android: Open-source library for image processing.
-*   MainActivity.java Structure:
+* OpenCV for Android: Open-source library for image processing.
+* MainActivity.java Structure:
    * [cannyedge-camerax](/cannyedge-camerax) — Uses the CameraX lifecycle to manage the camera and processes images with ImageAnalysis.
    * [cannyedge](/cannyedge) — Extends `AppCompatActivity` and follows the Android Activity lifecycle. For extending `CameraActivity`, refer to [MainExtendsCam.java](/assets/MainExtendsCam.java).
    * Image algorithms are organized in a modular way.
-*   Minimum Android Version: Android 7.0 (API level 24).
+* Minimum Android Version: Android 7.0 (API level 24).
 
 ## Getting Started
 Follow the steps below to clone and run this project on your own system.
 
 ### Development Environment
-*   Android Studio Narwhal 3
-*   OpenJDK 17 — [OpenCV Prerequisite](https://github.com/opencv/opencv/wiki/Custom-OpenCV-Android-SDK-and-AAR-package-build)
-*   opencv-4.12.0-android-sdk — [Download File](https://github.com/opencv/opencv/releases)
+* Android Studio Narwhal 3
+* OpenJDK 17 — [OpenCV Prerequisite](https://github.com/opencv/opencv/wiki/Custom-OpenCV-Android-SDK-and-AAR-package-build)
+* opencv-4.12.0-android-sdk — [Download File](https://github.com/opencv/opencv/releases)
 
 ### Project Structure
 ```lua
@@ -68,7 +67,6 @@ YourProject/
         implementation project(':opencv-sdk')
     }
     ```
-
     <details>
     <summary>CameraX project only: add dependencies (Click to expand)</summary>
 
@@ -99,7 +97,6 @@ YourProject/
     }
     ``` 
 7. Build and run — the app will display the real-time Canny edge detection output on your device.
-
 
 ### Application Black Screen Issues
 Cause | Solution

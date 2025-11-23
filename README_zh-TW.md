@@ -2,11 +2,11 @@
 本專案示範如何在 Android 上使用相機進行即時邊緣偵測，使用 OpenCV 4.12 SDK 進行影像處理。整體設計簡潔、結構清楚，適合作為學習 OpenCV 在 Android 平台應用的入門範例。
 
 ## 功能特色
-*   即時邊緣偵測：應用 Canny 邊緣偵測演算法於即時的相機畫面。
-*   全螢幕顯示：採用簡潔的全螢幕佈局。
-*   支援手勢旋轉螢幕：應用程式畫面會根據使用者的裝置方向自動旋轉 (fullSensor)。
-*   模組化影像處理架構：可依需求擴充影像演算法。
-*   極簡設計：專案結構與程式碼都保持最大程度的簡潔。
+* 即時邊緣偵測：應用 Canny 邊緣偵測演算法於即時的相機畫面。
+* 全螢幕顯示：採用簡潔的全螢幕佈局。
+* 支援手勢旋轉螢幕：應用程式畫面會根據使用者的裝置方向自動旋轉 (fullSensor)。
+* 模組化影像處理架構：可依需求擴充影像演算法。
+* 極簡設計：專案結構與程式碼都保持最大程度的簡潔。
 
 ## APP畫面展示
 <table>
@@ -23,19 +23,20 @@
 </table>
 
 ## 設計核心
-*   OpenCV for Android：用於影像處理的開源函式庫。
-*   MainActivity.java 結構：
+* OpenCV for Android：用於影像處理的開源函式庫。
+* MainActivity.java 結構：
    * [cannyedge-camerax](/cannyedge-camerax) — 使用 CameraX 架構管理相機生命週期並使用 ImageAnalysis 處理影像 。
    * [cannyedge](/cannyedge) — 繼承自 `AppCompatActivity`,，遵照 Android Activity 生命週期設計。若要繼承 `CameraActivity`, 請參考 [MainExtendsCam.java](/assets/MainExtendsCam.java)。
    * 影像處理演算法模組化管理。
-*   Android 最低支援版本：Android 7.0 (API 級別 24)。
+* Android 最低支援版本：Android 7.0 (API 級別 24)。
 
 ## 開始使用
 您可以按照以下步驟，在您自己的電腦上複製並執行此專案。
+
 ### 開發環境
-*   Android Studio Narwhal 3
-*   OpenJDK 17 — [OpenCV 官方要求](https://github.com/opencv/opencv/wiki/Custom-OpenCV-Android-SDK-and-AAR-package-build)
-*   opencv-4.12.0-android-sdk — [下載檔案](https://github.com/opencv/opencv/releases)
+* Android Studio Narwhal 3
+* OpenJDK 17 — [OpenCV 官方要求](https://github.com/opencv/opencv/wiki/Custom-OpenCV-Android-SDK-and-AAR-package-build)
+* opencv-4.12.0-android-sdk — [下載檔案](https://github.com/opencv/opencv/releases)
 
 ### 專案架構
 ```lua
